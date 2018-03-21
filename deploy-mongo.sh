@@ -45,5 +45,6 @@ sudo sysctl -w net.ipv4.tcp_keepalive_time=300
 #set keepalive time in persistant way
 echo "net.ipv4.tcp_keepalive_time = 300" | sudo tee -a /etc/sysctl.conf
 
-sudo service mongod start
+# sudo service mongod start
 sudo chkconfig mongod on
+sudo mongod --fork --syslog
