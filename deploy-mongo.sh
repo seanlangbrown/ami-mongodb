@@ -21,6 +21,8 @@ echo '/dev/sdb /data xfs defaults,auto,noatime,noexec 0 0' | sudo tee -a /etc/fs
 sudo mount /data
 
 sudo chown mongod:mongod /data /journal /log
+sudo mkdir /data/db
+sudo chmod 777 /data/db
 
 sudo ln -s /journal /data/journal
 
