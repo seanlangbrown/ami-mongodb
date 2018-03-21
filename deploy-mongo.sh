@@ -27,7 +27,7 @@ sudo chmod 777 /data/db
 sudo ln -s /journal /data/journal
 
 # configure mongo parameters
-echo "dbpath = /data" | sudo tee -a /etc/mongod.conf
+echo "dbpath = /data/db" | sudo tee -a /etc/mongod.conf
 echo "logpath = /log/mongod.log" | sudo tee -a /etc/mongod.conf
 
 #adjust ulimit for mongo
