@@ -12,6 +12,8 @@ sudo yum -y update && sudo yum install -y mongodb-org-server \
   # create mount points mount each volume, set ownershi
   # sudo mkdir /data /log /journal
 
+sudo mkdir -p /data /log /journal
+
 sudo mkfs.xfs -f /dev/sdb
 
 echo '/dev/sdb /data xfs defaults,auto,noatime,noexec 0 0' | sudo tee -a /etc/fstab
