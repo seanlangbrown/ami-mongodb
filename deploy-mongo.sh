@@ -29,8 +29,8 @@ sudo chown mongod:mongod /data /journal /log
 sudo ln -s /journal /data/journal
 
 # configure mongo parameters
-dbpath = /data
-logpath = /log/mongod.log
+echo "dbpath = /data" >> /etc/mongod.conf
+echo "logpath = /log/mongod.log" >> /etc/mongod.conf
 
 #adjust ulimit for mongo
 echo '* soft nofile 64000
