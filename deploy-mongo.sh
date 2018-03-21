@@ -25,8 +25,8 @@ sudo chown mongod:mongod /data /journal /log
 sudo ln -s /journal /data/journal
 
 # configure mongo parameters
-echo "dbpath = /data" >> /etc/mongod.conf
-echo "logpath = /log/mongod.log" >> /etc/mongod.conf
+echo "dbpath = /data" | sudo tee -a /etc/mongod.conf
+echo "logpath = /log/mongod.log" | sudo tee -a /etc/mongod.conf
 
 #adjust ulimit for mongo
 echo '* soft nofile 64000
@@ -41,7 +41,7 @@ echo 'ACTION=="add|change", KERNEL=="sdb", ATTR{bdi/read_ahead_kb}="0"' | sudo t
 #set keepalive time
 sudo sysctl -w net.ipv4.tcp_keepalive_time=300
 #set keepalive time in persistant way
-echo "net.ipv4.tcp_keepalive_time = 300" >> /etc/sysctl.conf
+echo "net.ipv4.tcp_keepalive_time = 300" | sudo tee -a /etc/sysctl.conf
 
 sudo service mongod start
 sudo chkconfig mongod on
