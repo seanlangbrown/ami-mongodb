@@ -19,8 +19,8 @@ gpgkey=https://www.mongodb.org/static/pgp/server-3.4.asc" |
   sudo mkdir /data /log /journal
 
 sudo mkfs.xfs /dev/sdb
-# sudo mkfs.xfs /dev/xvdg
-# sudo mkfs.xfs /dev/xvdh
+sudo mkfs.xfs /dev/xvdg
+sudo mkfs.xfs /dev/xvdh
 
 echo '/dev/xvdf /data xfs defaults,auto,noatime,noexec 0 0
 /dev/xvdg /journal xfs defaults,auto,noatime,noexec 0 0
@@ -48,12 +48,12 @@ echo '* soft nofile 64000
 sudo blockdev --setra 0 /dev/sdb
 echo 'ACTION=="add|change", KERNEL=="xvdf", ATTR{bdi/read_ahead_kb}="0"' | sudo tee -a /etc/udev/rules.d/85-ebs.rules
 
-# # Once again, repeat the above command for all required volumes (note: the device we created was named /dev/xvdf but the name used by the system is xvdf).
-# sudo blockdev --setra 0 /dev/xvdg
-# echo 'ACTION=="add|change", KERNEL=="xvdg", ATTR{bdi/read_ahead_kb}="0"' | sudo tee -a /etc/udev/rules.d/85-ebs.rules
+# Once again, repeat the above command for all required volumes (note: the device we created was named /dev/xvdf but the name used by the system is xvdf).
+sudo blockdev --setra 0 /dev/xvdg
+echo 'ACTION=="add|change", KERNEL=="xvdg", ATTR{bdi/read_ahead_kb}="0"' | sudo tee -a /etc/udev/rules.d/85-ebs.rules
 
-# sudo blockdev --setra 0 /dev/xvdh
-# echo 'ACTION=="add|change", KERNEL=="xvdh", ATTR{bdi/read_ahead_kb}="0"' | sudo tee -a /etc/udev/rules.d/85-ebs.rules
+sudo blockdev --setra 0 /dev/xvdh
+echo 'ACTION=="add|change", KERNEL=="xvdh", ATTR{bdi/read_ahead_kb}="0"' | sudo tee -a /etc/udev/rules.d/85-ebs.rules
 
 #set keepalive time
 sudo sysctl -w net.ipv4.tcp_keepalive_time=300
