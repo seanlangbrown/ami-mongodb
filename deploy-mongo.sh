@@ -16,7 +16,7 @@ gpgkey=https://www.mongodb.org/static/pgp/server-3.4.asc" |
   sudo tee -a /etc/yum.repos.d/mongodb-org-3.4.repo
 
   # create mount points mount each volume, set ownershi
-  sudo mkdir /data /log /journal
+  # sudo mkdir /data /log /journal
 
 sudo mkfs.xfs -f /dev/sdb
 
@@ -40,7 +40,7 @@ echo '* soft nofile 64000
 
 #set write ahead limits, make persistant
 sudo blockdev --setra 0 /dev/sdb
-echo 'ACTION=="add|change", KERNEL=="xvdf", ATTR{bdi/read_ahead_kb}="0"' | sudo tee -a /etc/udev/rules.d/85-ebs.rules
+echo 'ACTION=="add|change", KERNEL=="sdb", ATTR{bdi/read_ahead_kb}="0"' | sudo tee -a /etc/udev/rules.d/85-ebs.rules
 
 #set keepalive time
 sudo sysctl -w net.ipv4.tcp_keepalive_time=300
